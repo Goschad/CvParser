@@ -12,7 +12,7 @@ let pageRouter = router {
 }
 
 let apiRouter = router {
-    get "/hello" (text "Hello, API!")
+    get "/" (text "Hello, API!")
 }
 
 let mainRouter = router {

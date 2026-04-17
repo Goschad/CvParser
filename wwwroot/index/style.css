@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.upload-box {
+    display: block;
+    width: 100%;
+    border: 4px dashed #3b82f6;      /* bleu principal */
+    border-radius: 26px;
+    background: #eff6ff;             /* bleu très clair */
+    padding: 42px 32px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.upload-box:hover {
+    border-color: #1d4ed8;          /* bleu plus foncé */
+    background: #dbeafe;            /* bleu clair hover */
+}
+
+.upload-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    text-align: center;
+}
+
+.upload-text {
+    font-size: 1.15rem;
+    color: #1f2937;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.submit-btn {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background: rgb(19, 19, 19);
+    color: white;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #1f1f1f;
+}
