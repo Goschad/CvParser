@@ -5,10 +5,12 @@ open Giraffe
 
 open Index
 open Result
+open Handlers
 
 let pageRouter = router {
     get "/" indexHandler
     get "/result" resultHandler
+    post "/upload" handleUpload
 }
 
 let apiRouter = router {

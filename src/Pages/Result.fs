@@ -4,15 +4,15 @@ open Saturn
 open Giraffe
 open Giraffe.ViewEngine
 
-let head (pageTitle: string) =
+let head =
     head [] [
-        title [] [ str pageTitle ]
+        title [] [ str "Resume result" ]
         link [ _rel "stylesheet"; _href "/result/style.css" ]
     ]
 
 let resultView (firstName: string) (lastName: string) (email: string) (phone: string) =
     html [] [
-        head "Resume result"
+        head 
         body [] [
             div [ _class "container" ] [
                 h1 [] [ str "Parsing result" ]
