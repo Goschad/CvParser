@@ -3,11 +3,13 @@ module Result
 open Saturn
 open Giraffe
 open Giraffe.ViewEngine
+open Microsoft.AspNetCore.Http
 
 let head =
     head [] [
         title [] [ str "Resume result" ]
         link [ _rel "stylesheet"; _href "/result/style.css" ]
+        link [ _rel "icon"; _type "image/png"; _href "/favicon.png" ]
     ]
 
 let resultView (firstName: string) (lastName: string) (email: string) (phone: string) =
@@ -19,7 +21,7 @@ let resultView (firstName: string) (lastName: string) (email: string) (phone: st
 
                 div [ _class "card" ] [
                     p [] [ strong [] [ str "firstname: " ]; str firstName ]
-                    p [] [ strong [] [ str "lastName: " ]; str lastName ]
+                    p [] [ strong [] [ str "lastname: " ]; str lastName ]
                     p [] [ strong [] [ str "email: " ]; str email ]
                     p [] [ strong [] [ str "phone: " ]; str phone ]
                 ]
@@ -27,10 +29,9 @@ let resultView (firstName: string) (lastName: string) (email: string) (phone: st
         ]
     ]
 
-let resultHandler next ctx =
-    let firstName = "Jean"
-    let lastName = "Dupont"
-    let email = "jean.dupont@gmail.com"
-    let phone = "+33 6 12 34 56 78"
+let resultHandler next (ctx: HttpContext) =
+    let get (key: string) =
+        let v = ctx.Session.GetString(key)
+        if isNull v || v = "" then "Non trouvé" else v
 
-    htmlView (resultView firstName lastName email phone) next ctx
+    htmlView (resultView (get "firstname") (get "lastname") (get "email") (get "phone")) next ctx

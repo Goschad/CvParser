@@ -1,6 +1,5 @@
 open Saturn
 open Giraffe
-open Giraffe.ViewEngine
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.DependencyInjection
 

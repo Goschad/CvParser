@@ -27,19 +27,22 @@ let handleUpload : HttpHandler =
 
                 use pdf = PdfDocument.Open(bytes)
                 
-                let texte =
+                let text =
                     pdf.GetPages()
-                    |> Seq.collect (fun page -> page.GetWords())
-                    |> Seq.map (fun word -> word.Text)
-                    |> String.concat " "
+                    |> Seq.collect (fun page ->
+                        page.GetWords()
+                        |> Seq.groupBy (fun word -> System.Math.Round(word.BoundingBox.Bottom, 0))
+                        |> Seq.sortByDescending fst
+                        |> Seq.map (fun (_, words) ->
+                            words
+                            |> Seq.sortBy (fun w -> w.BoundingBox.Left)
+                            |> Seq.map (fun w -> w.Text)
+                            |> String.concat " "
+                        )
+                    )
+                    |> String.concat "\n"
 
-                // tmp 
-                let cvData = {
-                    firstname = Some "Jean"
-                    lastname  = Some "DUPONT"
-                    email     = Some "jean.dupont@gmail.com"
-                    phone     = Some "+33 6 12 34 56 78"
-                }
+                let cvData = extractData text
 
                 ctx.Session.SetString("firstname", cvData.firstname |> Option.defaultValue "")
                 ctx.Session.SetString("lastname", cvData.lastname |> Option.defaultValue "")

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="src/Domain/Types.fs" />
+    <Compile Include="src/Domain/Heuristic.fs" />
     <Compile Include="src/Domain/Parser.fs" />
     <Compile Include="src/Api/Handlers.fs" />
     <Compile Include="src/Pages/Index.fs" />

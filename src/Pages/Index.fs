@@ -7,6 +7,7 @@ let head =
     head [] [
         title [] [ str "F# CV Parser" ]
         link [ _rel "stylesheet"; _href "/index/style.css" ]
+        link [ _rel "icon"; _type "image/png"; _href "/favicon.png" ]
         script [ _src "/index/script.js" ] []
     ]
 
